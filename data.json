@@ -1,0 +1,110 @@
+{
+
+  "cover" : "https://cdn.discordapp.com/attachments/1019737820383957073/1064443214905475172/cover.png",
+  "photo" : "https://cdn.discordapp.com/attachments/993060371545985065/993060481919111248/20211225_200459.jpg",
+  "detail" : {
+
+    "Phone" : null,
+    "Email" : null,
+    "Location" : null,
+    "My Website" : null
+
+  },
+  "subject" : {
+
+    "Profile" : {
+
+      "About Me" : {
+
+        "display" : true,
+        "subtitleA" : null,
+        "subtitleB" : null,
+        "text" : []
+
+      }
+
+    },
+    "Experience" : {
+
+      "Job Title" : {
+
+        "display" : true,
+        "subtitleA" : null,
+        "subtitleB" : null,
+        "text" : []
+
+      },
+      "Project Title" : {
+
+        "display" : true,
+        "subtitleA" : null,
+        "subtitleB" : null,
+        "text" : []
+
+      },
+      "Project Title" : {
+
+        "display" : false,
+        "subtitleA" : null,
+        "subtitleB" : null,
+        "text" : []
+
+      }
+
+    },
+    "Education" : {
+
+      "School Name" : {
+
+        "display" : true,
+        "subtitleA" : null,
+        "subtitleB" : null,
+        "text" : []
+
+      }
+
+    },
+    "Awards" : {
+
+      "Name of Honor" : {
+
+        "display" : true,
+        "subtitleA" : null,
+        "subtitleB" : null,
+        "text" : []
+
+      },
+      "Name of Award" : {
+
+        "display" : true,
+        "subtitleA" : null,
+        "subtitleB" : null,
+        "text" : []
+
+      }
+
+    },
+    "Pastimes" : {
+
+      "My Hobbies" : {
+
+        "display" : true,
+        "subtitleA" : null,
+        "subtitleB" : null,
+        "text" : []
+
+      },
+      "My Interests" : {
+
+        "display" : true,
+        "subtitleA" : null,
+        "subtitleB" : null,
+        "text" : []
+
+      }
+
+    }
+
+  }
+
+}
