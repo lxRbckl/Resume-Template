@@ -1,16 +1,17 @@
 # import <
 from os import path
 from dash import Dash, html
-from lxRbckl import requestsGet
 import dash_bootstrap_components as dbc
+from lxRbckl import requestsGet, jsonLoad
 
 # >
 
 
 # global <
 gDataLink = 'https://raw.githubusercontent.com/lxRbckl/Project-Heimir/main/data.json'
-
 gDirectory = '/'.join(path.realpath(__file__).split('/')[:-1])
+gStyle = jsonLoad(pFile = f'{gDirectory}/style.json')
+gData = jsonLoad(pFile = f'{gDirectory}/data.json') # <
 application = Dash(
 
     name = 'Resume',
@@ -50,8 +51,8 @@ def spacerFunction(
 
 def headerFunction(
 
-        pStyle: dict,
-        pChildren: str
+        pChildren: str,
+        pColor: str = gStyle['primaryColor']
 
 ):
     '''  '''
@@ -62,8 +63,8 @@ def headerFunction(
         className = 'display-5',
         style = dict(
 
-            margin = '-7px 0px 3px 0px',
-            color = pStyle['primaryColor']
+            color = pColor,
+            margin = '-7px 0px 3px 0px'
 
         )
 
@@ -72,8 +73,8 @@ def headerFunction(
 
 def titleFunction(
 
-        pStyle: dict,
-        pChildren: str
+        pChildren: str,
+        pColor: str = gStyle['primaryColor']
 
 ):
     '''  '''
@@ -83,8 +84,8 @@ def titleFunction(
         children = pChildren,
         style = dict(
 
-            margin = '0px 0px -10px 0px',
-            color = pStyle['primaryColor']
+            color = pColor,
+            margin = '0px 0px -10px 0px'
 
         )
 
@@ -96,9 +97,9 @@ def subtitleFunction(
         i: str,
         pKey: str,
         pData: dict,
-        pStyle: dict,
         isBold: bool = False,
-        pValue: str = 'subtitleA'
+        pValue: str = 'subtitleA',
+        pColor: str = gStyle['primaryColor']
 
 ):
     '''  '''
@@ -110,8 +111,8 @@ def subtitleFunction(
         style = dict(
 
             fontSize = 15,
+            color = pColor,
             margin = '8px 0px -8px 0px',
-            color = pStyle['primaryColor'],
             fontWeight = {
 
                 True : 'bolder',
@@ -129,7 +130,7 @@ def textFunction(
         i: str,
         pKey: str,
         pData: dict,
-        pStyle: dict
+        pColor: str = gStyle['primaryColor']
 
 ):
     '''  '''
@@ -141,8 +142,8 @@ def textFunction(
             children = i,
             style = dict(
 
-                margin = '15px 0px 0px 0px',
-                color = pStyle['primaryColor']
+                color = pColor,
+                margin = '15px 0px 0px 0px'
 
             )
 
@@ -154,7 +155,7 @@ def textFunction(
 def badgeFunction(
 
         i: str,
-        pStyle: dict,
+        pColor: str = gStyle['primaryColor'],
         pData: dict = requestsGet(pLink = gDataLink)
 
 ):
@@ -167,13 +168,13 @@ def badgeFunction(
 
             dbc.Badge(
 
+                color = gStyle['primaryColor'],
                 children = i.replace('-', ' '),
-                color = pStyle['primaryColor'],
                 style = dict(
 
                     padding = 6,
                     margin = '0px 1px 0px 1px',
-                    color = pStyle['secondaryColor']
+                    color = gStyle['secondaryColor']
 
                 )
 
@@ -186,11 +187,11 @@ def subjectFunction(
 
         pKey: str,
         pData: dict,
-        pStyle: dict,
         pPadding: str = None,
         pSubtitle: str = None,
         pChildren: list = None,
-        pBackgroundColor: str = None
+        pBackgroundColor: str = None,
+        pColor: str = gStyle['primaryColor']
 
 ):
     '''  '''
@@ -210,12 +211,12 @@ def subjectFunction(
             spacerFunction(
 
                 pPadding = '3px',
-                pBackgroundColor = pStyle['primaryColor']
+                pBackgroundColor = pColor
 
             ),
             headerFunction(
 
-                pStyle = pStyle,
+                pColor = pColor,
                 pChildren = pKey
 
             ),
@@ -233,7 +234,7 @@ def subjectFunction(
                     titleFunction(
 
                         pChildren = i,
-                        pStyle = pStyle
+                        pColor = pColor
 
                     ),
                     subtitleFunction(
@@ -242,7 +243,7 @@ def subjectFunction(
                         pKey = pKey,
                         pData = pData,
                         isBold = True,
-                        pStyle = pStyle,
+                        pColor = pColor,
                         pValue = 'subtitleB'
 
                     ),
@@ -251,7 +252,7 @@ def subjectFunction(
                         i = i,
                         pKey = pKey,
                         pData = pData,
-                        pStyle = pStyle
+                        pColor = pColor
 
                     ),
 
@@ -264,13 +265,13 @@ def subjectFunction(
                         i = i,
                         pKey = pKey,
                         pData = pData,
-                        pStyle = pStyle
+                        pColor = pColor
 
                     ),
                     spacerFunction(
 
                         pPadding = '0.5px',
-                        pBackgroundColor = pStyle['primaryColor']
+                        pBackgroundColor = pColor
 
                     )
 

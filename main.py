@@ -48,8 +48,8 @@ application.layout = dbc.Container(
                         style = dict(
 
                             margin = '1vh 0px 0px 0px',
-                            padding = '3vh 0px 3vh 0px',
-                            backgroundColor = gStyle['tertiaryColor']
+                            padding = '2vh 0px 2vh 0px',
+                            backgroundColor = gStyle['primaryColor']
 
                         ),
                         children = html.Img(
@@ -79,7 +79,6 @@ application.layout = dbc.Container(
                     # spacer <
                     subjectFunction(
 
-                        pStyle = gStyle,
                         pKey = 'Profile',
                         pData = gData['subject']
 
@@ -137,10 +136,22 @@ application.layout = dbc.Container(
                     # Pastimes <
                     subjectFunction(
 
-                        pStyle = gStyle,
                         pKey = 'Pastimes',
                         pData = gData['subject'],
                         pPadding = '0px 0px 5% 0px'
+
+                    ),
+
+                    # >
+
+                    # Education <
+                    subjectFunction(
+
+                        pKey = 'Education',
+                        pData = gData['subject'],
+                        pPadding = '1% 0px 1% 0px',
+                        pColor = gStyle['secondaryColor'],
+                        pBackgroundColor = gStyle['primaryColor']
 
                     ),
 
@@ -162,7 +173,6 @@ application.layout = dbc.Container(
                             ),
                             headerFunction(
 
-                                pStyle = gStyle,
                                 pChildren = 'Skills'
 
                             ),
@@ -179,7 +189,6 @@ application.layout = dbc.Container(
                                     # spacer <
                                     titleFunction(
 
-                                        pStyle = gStyle,
                                         pChildren = {
 
                                             'library' : 'Libraries',
@@ -191,7 +200,6 @@ application.layout = dbc.Container(
                                     badgeFunction(
 
                                         i = i,
-                                        pStyle = gStyle
 
                                     ),
                                     spacerFunction(
@@ -211,19 +219,6 @@ application.layout = dbc.Container(
 
                         ]
 
-                    ),
-
-                    # >
-
-                    # Education <
-                    subjectFunction(
-
-                        pStyle = gStyle,
-                        pKey = 'Education',
-                        pData = gData['subject'],
-                        pPadding = '1% 0px 1% 0px',
-                        pBackgroundColor = gStyle['tertiaryColor']
-
                     )
 
                     # >
@@ -237,23 +232,21 @@ application.layout = dbc.Container(
                 width = 3,
                 children = [
 
-                    # Experience <
-                    # Education <
                     # Awards <
+                    # Experience <
                     subjectFunction(
 
-                        pStyle = gStyle,
-                        pKey = 'Experience',
+                        pKey = 'Awards',
                         pData = gData['subject'],
                         pPadding = '0px 0px 5% 0px'
 
                     ),
                     subjectFunction(
 
-                        pStyle = gStyle,
-                        pKey = 'Awards',
+                        pKey = 'Experience',
                         pData = gData['subject'],
-                        pPadding = '5% 0px 0px 0px'
+                        pPadding = '0px 0px 5% 0px'
+
 
                     )
 
@@ -271,6 +264,6 @@ application.layout = dbc.Container(
 
 
 # main <
-if (__name__ == '__main__'): application.run_server()
+if (__name__ == '__main__'): application.run_server(debug = True)
 
 # >
