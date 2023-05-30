@@ -1,17 +1,17 @@
 # import <
 from os import path
 from dash import Dash, html
+from lxRbckl import requestsGet
 import dash_bootstrap_components as dbc
-from lxRbckl import requestsGet, jsonLoad
 
 # >
 
 
+# link <
 # global <
 gDataLink = 'https://raw.githubusercontent.com/lxRbckl/Project-Heimir/main/data.json'
+
 gDirectory = '/'.join(path.realpath(__file__).split('/')[:-1])
-gStyle = jsonLoad(pFile = f'{gDirectory}/style.json')
-gData = jsonLoad(pFile = f'{gDirectory}/data.json') # <
 application = Dash(
 
     name = 'Resume',
@@ -37,7 +37,7 @@ def spacerFunction(
         pMarginBottom: str = '1vh'
 
 ):
-    '''  '''
+    ''' to provide space between materials '''
 
     return html.Div(style = dict(
 
@@ -51,11 +51,11 @@ def spacerFunction(
 
 def headerFunction(
 
-        pChildren: str,
-        pColor: str = gStyle['primaryColor']
+        pStyle: dict,
+        pChildren: str
 
 ):
-    '''  '''
+    ''' to provide a broad subject text to content '''
 
     return html.H2(
 
@@ -63,8 +63,8 @@ def headerFunction(
         className = 'display-5',
         style = dict(
 
-            color = pColor,
-            margin = '-7px 0px 3px 0px'
+            margin = '-7px 0px 3px 0px',
+            color = pStyle['primaryColor']
 
         )
 
@@ -73,19 +73,19 @@ def headerFunction(
 
 def titleFunction(
 
-        pChildren: str,
-        pColor: str = gStyle['primaryColor']
+        pStyle: dict,
+        pChildren: str
 
 ):
-    '''  '''
+    ''' to provide a specific subject text to content '''
 
     return html.H3(
 
         children = pChildren,
         style = dict(
 
-            color = pColor,
-            margin = '0px 0px -10px 0px'
+            margin = '0px 0px -10px 0px',
+            color = pStyle['primaryColor']
 
         )
 
@@ -97,12 +97,12 @@ def subtitleFunction(
         i: str,
         pKey: str,
         pData: dict,
+        pStyle: dict,
         isBold: bool = False,
-        pValue: str = 'subtitleA',
-        pColor: str = gStyle['primaryColor']
+        pValue: str = 'subtitleA'
 
 ):
-    '''  '''
+    ''' to provide a text box for tertiary information '''
 
     return html.H2(
 
@@ -111,8 +111,8 @@ def subtitleFunction(
         style = dict(
 
             fontSize = 15,
-            color = pColor,
             margin = '8px 0px -8px 0px',
+            color = pStyle['primaryColor'],
             fontWeight = {
 
                 True : 'bolder',
@@ -130,10 +130,10 @@ def textFunction(
         i: str,
         pKey: str,
         pData: dict,
-        pColor: str = gStyle['primaryColor']
+        pStyle: dict
 
 ):
-    '''  '''
+    ''' to provide generic text as the main feature '''
 
     return [
 
@@ -142,8 +142,8 @@ def textFunction(
             children = i,
             style = dict(
 
-                color = pColor,
-                margin = '15px 0px 0px 0px'
+                margin = '15px 0px 0px 0px',
+                color = pStyle['primaryColor']
 
             )
 
@@ -155,11 +155,11 @@ def textFunction(
 def badgeFunction(
 
         i: str,
-        pColor: str = gStyle['primaryColor'],
+        pStyle: dict,
         pData: dict = requestsGet(pLink = gDataLink)
 
 ):
-    '''  '''
+    ''' to provide an indivual subject article '''
 
     return html.Div(
 
@@ -168,13 +168,13 @@ def badgeFunction(
 
             dbc.Badge(
 
-                color = gStyle['primaryColor'],
                 children = i.replace('-', ' '),
+                color = pStyle['primaryColor'],
                 style = dict(
 
                     padding = 6,
                     margin = '0px 1px 0px 1px',
-                    color = gStyle['secondaryColor']
+                    color = pStyle['secondaryColor']
 
                 )
 
@@ -187,14 +187,14 @@ def subjectFunction(
 
         pKey: str,
         pData: dict,
+        pStyle: dict,
         pPadding: str = None,
         pSubtitle: str = None,
         pChildren: list = None,
-        pBackgroundColor: str = None,
-        pColor: str = gStyle['primaryColor']
+        pBackgroundColor: str = None
 
 ):
-    '''  '''
+    ''' build an article given parameters from all functions '''
 
     return html.Div(
 
@@ -211,12 +211,12 @@ def subjectFunction(
             spacerFunction(
 
                 pPadding = '3px',
-                pBackgroundColor = pColor
+                pBackgroundColor = pStyle['primaryColor']
 
             ),
             headerFunction(
 
-                pColor = pColor,
+                pStyle = pStyle,
                 pChildren = pKey
 
             ),
@@ -234,7 +234,7 @@ def subjectFunction(
                     titleFunction(
 
                         pChildren = i,
-                        pColor = pColor
+                        pStyle = pStyle
 
                     ),
                     subtitleFunction(
@@ -243,7 +243,7 @@ def subjectFunction(
                         pKey = pKey,
                         pData = pData,
                         isBold = True,
-                        pColor = pColor,
+                        pStyle = pStyle,
                         pValue = 'subtitleB'
 
                     ),
@@ -252,7 +252,7 @@ def subjectFunction(
                         i = i,
                         pKey = pKey,
                         pData = pData,
-                        pColor = pColor
+                        pStyle = pStyle
 
                     ),
 
@@ -265,13 +265,13 @@ def subjectFunction(
                         i = i,
                         pKey = pKey,
                         pData = pData,
-                        pColor = pColor
+                        pStyle = pStyle
 
                     ),
                     spacerFunction(
 
                         pPadding = '0.5px',
-                        pBackgroundColor = pColor
+                        pBackgroundColor = pStyle['primaryColor']
 
                     )
 

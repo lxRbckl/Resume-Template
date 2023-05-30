@@ -1,16 +1,22 @@
 # Project Resume by Alex Arbuckle #
 
-# rgb(52, 73, 95)
-#
-#
 
 # import <
 from dash import html
 from lxRbckl import jsonLoad
 import dash_bootstrap_components as dbc
 
-from resource import spacerFunction, headerFunction, titleFunction
-from resource import application, gDirectory, subjectFunction, badgeFunction
+from utility import (
+
+    gDirectory,
+    application,
+    titleFunction,
+    badgeFunction,
+    spacerFunction,
+    headerFunction,
+    subjectFunction
+
+)
 
 # >
 
@@ -48,8 +54,8 @@ application.layout = dbc.Container(
                         style = dict(
 
                             margin = '1vh 0px 0px 0px',
-                            padding = '2vh 0px 2vh 0px',
-                            backgroundColor = gStyle['primaryColor']
+                            padding = '3vh 0px 3vh 0px',
+                            backgroundColor = gStyle['tertiaryColor']
 
                         ),
                         children = html.Img(
@@ -79,6 +85,7 @@ application.layout = dbc.Container(
                     # spacer <
                     subjectFunction(
 
+                        pStyle = gStyle,
                         pKey = 'Profile',
                         pData = gData['subject']
 
@@ -136,22 +143,10 @@ application.layout = dbc.Container(
                     # Pastimes <
                     subjectFunction(
 
+                        pStyle = gStyle,
                         pKey = 'Pastimes',
                         pData = gData['subject'],
                         pPadding = '0px 0px 5% 0px'
-
-                    ),
-
-                    # >
-
-                    # Education <
-                    subjectFunction(
-
-                        pKey = 'Education',
-                        pData = gData['subject'],
-                        pPadding = '1% 0px 1% 0px',
-                        pColor = gStyle['secondaryColor'],
-                        pBackgroundColor = gStyle['primaryColor']
 
                     ),
 
@@ -173,6 +168,7 @@ application.layout = dbc.Container(
                             ),
                             headerFunction(
 
+                                pStyle = gStyle,
                                 pChildren = 'Skills'
 
                             ),
@@ -189,6 +185,7 @@ application.layout = dbc.Container(
                                     # spacer <
                                     titleFunction(
 
+                                        pStyle = gStyle,
                                         pChildren = {
 
                                             'library' : 'Libraries',
@@ -200,6 +197,7 @@ application.layout = dbc.Container(
                                     badgeFunction(
 
                                         i = i,
+                                        pStyle = gStyle
 
                                     ),
                                     spacerFunction(
@@ -219,6 +217,53 @@ application.layout = dbc.Container(
 
                         ]
 
+                    ),
+
+                    # >
+
+                    # My Website <
+                    html.Div(
+
+                        style = dict(
+
+                            padding = '1% 0px 1% 0px',
+                            backgroundColor = gStyle['tertiaryColor']
+
+                        ),
+                        children = [
+
+                            # spacer <
+                            # title <
+                            # QR <
+                            spacerFunction(
+
+                                pPadding = '3px',
+                                pBackgroundColor = gStyle['primaryColor']
+
+                            ),
+                            headerFunction(
+
+                                pStyle = gStyle,
+                                pChildren = 'My Website'
+
+                            ),
+                            html.Img(
+
+                                src = gData['QR'],
+                                className = 'col-5 text-center'
+
+                            ),
+                            spacerFunction(
+
+                                pPadding = '0.5px',
+                                pBackgroundColor = gStyle['primaryColor']
+
+                            )
+
+                            # >
+
+                        ]
+
                     )
 
                     # >
@@ -232,21 +277,32 @@ application.layout = dbc.Container(
                 width = 3,
                 children = [
 
-                    # Awards <
                     # Experience <
+                    # Education <
+                    # Awards <
                     subjectFunction(
 
-                        pKey = 'Awards',
+                        pStyle = gStyle,
+                        pKey = 'Experience',
                         pData = gData['subject'],
                         pPadding = '0px 0px 5% 0px'
 
                     ),
                     subjectFunction(
 
-                        pKey = 'Experience',
+                        pStyle = gStyle,
+                        pKey = 'Education',
                         pData = gData['subject'],
-                        pPadding = '0px 0px 5% 0px'
+                        pPadding = '1% 0px 1% 0px',
+                        pBackgroundColor = gStyle['tertiaryColor']
 
+                    ),
+                    subjectFunction(
+
+                        pStyle = gStyle,
+                        pKey = 'Awards',
+                        pData = gData['subject'],
+                        pPadding = '5% 0px 0px 0px'
 
                     )
 
@@ -264,6 +320,6 @@ application.layout = dbc.Container(
 
 
 # main <
-if (__name__ == '__main__'): application.run_server(debug = True)
+if (__name__ == '__main__'): application.run_server()
 
 # >
