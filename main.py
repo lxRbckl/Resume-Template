@@ -10,14 +10,10 @@ from dash_bootstrap_components import themes
 # >
 
 
-
-fpData = '/data.json'
-
-
 # main <
 if (__name__ == '__main__'):
     
-    data = fileGet(pFile = fpData)
+    data = fileGet(pFile = '/data.json')
     layout = framework().layout(data)
     
     application = Dash(
