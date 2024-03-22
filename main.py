@@ -30,6 +30,5 @@ if (__name__ == '__main__'):
     )
     application.layout = layout
     application.run(debug = True)
-    
 
 # >

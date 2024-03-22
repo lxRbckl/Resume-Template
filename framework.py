@@ -99,7 +99,6 @@ class framework:
         return html.Div(
             
             className="d-flex flex-wrap",
-
             style = {
                 
                 "margin" : -2,
