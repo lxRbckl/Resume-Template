@@ -61,6 +61,7 @@ class framework:
                         {
                             
                             'hr' : self.hr,
+                            'small' : self.small,
                             'badge' : self.badge,
                             'title' : self.title,
                             'image' : self.image,
@@ -86,11 +87,92 @@ class framework:
             'opacity' : 1,
             'marginTop' : 5,
             'marginBottom' : 5,
+            'color' : self.colorBlack,
             'borderTop' : self.borderBlack
         
         }
     
     )
+    
+    
+    def small(
+        
+        self, 
+        v,
+        styled = [
+            
+            'In',
+            'Fall',
+            'While',
+            'Spring',
+            'Issued',
+            'github.com/ala2q6/CS456-P',
+            'github.com/lxRbckl/Project-ASBC'
+            
+        ]
+        
+    ):
+        '''  '''
+        
+        return html.Small(
+            
+            children = v,
+            style = {
+                
+                'margin' : 0,
+                'padding' : 0,
+                'color' : self.colorBlack,
+                'fontFamily' : self.fontFamily,
+                **{
+                    
+                    'In' : {'fontSize' : '0.8rem', 'textAlign' : 'justify'},
+                    False : {'fontSize' : '0.8rem', 'textAlign' : 'justify'},
+                    'While' : {'fontSize' : '0.8rem', 'textAlign' : 'justify'},
+                    'Fall' : {
+                        
+                        'textAlign' : 'left',
+                        'fontWeight' : '900',
+                        'fontSize' : '0.7rem'
+                    
+                    },
+                    'Spring' : {
+                        
+                        'textAlign' : 'left',
+                        'fontWeight' : '900',
+                        'fontSize' : '0.7rem'
+                    
+                    },
+                    'Issued' : {
+                        
+                        'textAlign' : 'left',
+                        'fontSize' : '0.8rem', 
+                        'fontStyle' : 'italic'
+                    
+                    },
+                    'github.com/ala2q6/CS456-P' : {
+                        
+                        'textAlign' : 'left',
+                        'fontWeight' : '900',
+                        'fontSize' : '0.8rem',
+                        'padding' : '0 0 0 5px',
+                        'borderLeft' : self.borderBlack
+                        
+                    },
+                    'github.com/lxRbckl/Project-ASBC' : {
+                        
+                        'textAlign' : 'left',
+                        'fontWeight' : '900',
+                        'fontSize' : '0.8rem',
+                        'padding' : '0 0 0 5px',
+                        'borderLeft' : self.borderBlack
+                        
+                    }
+                                        
+                }[v.split(' ')[0] if (v.split(' ')[0] in styled) else False]
+                
+            }
+            
+        )
     
     
     def badge(self, v):
@@ -115,6 +197,7 @@ class framework:
                     style = {
                         
                         'margin' : 2,
+                        'padding' : 3,
                         'color' : self.colorBlack,
                         'verticalAlign' : 'middle',
                         'border' : self.borderBlack
@@ -128,7 +211,22 @@ class framework:
         )
     
     
-    def title(self, v):
+    def title(
+        
+        self, 
+        v,
+        styled = [
+
+            'Alex',            
+            'UMKC',
+            'CS456',
+            'Advantage',
+            'Experience',
+            'Independent'
+            
+        ]
+    
+    ):
         '''  '''
         
         return html.H1(
@@ -136,32 +234,70 @@ class framework:
             children = v,
             style = {
                 
+                'margin' : 0,
                 'padding' : 0,
                 'lineHeight' : 1,
-                'margin' : '0 0 0 0',
                 'textAlign' : 'left',
+                'color' : self.colorBlack,
                 'fontFamily' : self.fontFamily,
                 **{
                     
-                    # name <
-                    # other <
+                    # specific <
+                    # non-specific <
+                    'UMKC' : {
+                        
+                        'marginBottom' : -5,
+                        'fontWeight' : '600',
+                        'fontSize' : '1.5rem',
+                        'fontStyle' : 'italic'
+                        
+                    },
+                    'CS456' : {
+                        
+                        'fontWeight' : '400',
+                        'fontSize' : '1.5rem',
+                        'fontStyle' : 'italic'
+                        
+                    },
+                    'Experience' : {
+                        
+                        'fontSize' : '2rem',
+                        'fontWeight' : 'bold',
+                        'fontStyle' : 'italic'
+                        
+                    },
+                    'Alex' : {
+                        
+                        'fontWeight' : '200',
+                        'fontSize' : '2.5rem',
+                        'fontStyle' : 'italic'
+                        
+                    },
+                    'Advantage' : {
+                        
+                        'marginBottom' : -5,
+                        'fontWeight' : '400',
+                        'fontSize' : '1.5rem',
+                        'fontStyle' : 'italic'
+                        
+                    },
+                    'Independent' : {
+                        
+                        'fontWeight' : '400',
+                        'fontSize' : '1.5rem',
+                        'fontStyle' : 'italic'
+                        
+                    },
                     False : {
                         
                         'fontSize' : '2rem',
                         'fontWeight' : 'bold'
                         
-                    },
-                    True : {
-                        
-                        'fontSize' : '2.5rem',
-                        'fontWeight' : '200',
-                        'fontStyle' : 'italic'
-                        
                     }
                     
                     # >
                     
-                }[v == 'Alex Arbuckle']
+                }[v.split(' ')[0] if (v.split(' ')[0] in styled) else False]
                 
             }
             
@@ -191,13 +327,12 @@ class framework:
             
             style = {
                 
-                'marginTop' : 5,
-                'marginBottom' : 5
+                'marginTop' : v
                 
             }
             
         )
-    
+        
     
     def markdown(self, v):
         '''  '''
@@ -209,15 +344,35 @@ class framework:
                 
                 'padding' : 0,
                 'textAlign' : 'justify',
-                'margin' : '0 0 -15px 0',
+                'margin' : '0 0 -25px 0',
+                "color" : self.colorBlack,
                 'fontFamily' : self.fontFamily
-                
+                                
             }
             
         )
     
     
-    def subtitle(self, v):
+    def subtitle(
+        
+        self, 
+        v,
+        styled = [
+            
+            'BS',
+            'Cum',
+            'Other',
+            "Dean's",
+            'Awards',
+            'Kansas',
+            'Bachelor',
+            'Packages',
+            'Languages',
+            'University'
+            
+        ]
+    
+    ):
         '''  '''
         
         return html.H1(
@@ -225,12 +380,100 @@ class framework:
             children = v,
             style = {
                 
+                'margin' : 0,
                 'padding' : 0,
-                'margin' : '0 0 0 0',
                 'textAlign' : 'left',
-                'fontWeight' : '100',
-                'fontSize' : '1.1rem',
-                'fontFamily' : self.fontFamily
+                'color' : self.colorBlack,
+                'fontFamily' : self.fontFamily,
+                **{
+                    
+                    False : {
+                        
+                        'fontSize' : '1rem',
+                        'fontWeight' : '100'
+                    
+                    },
+                    'BS' : {
+                        
+                        'fontSize' : '1rem',
+                        'fontWeight' : '900'
+                        
+                    },
+                    'Cum' : {
+                        
+                        'paddingLeft' : 5,
+                        'fontWeight' : '600',
+                        'fontSize' : '1rem',
+                        'borderLeft' : self.borderBlack
+                        
+                    },
+                    "Dean's" : {
+                        
+                        'paddingLeft' : 5,
+                        'fontWeight' : '600',
+                        'fontSize' : '1rem',
+                        'borderLeft' : self.borderBlack
+                        
+                    },
+                    'Awards' : {
+                        
+                        'fontWeight' : '300',
+                        'fontSize' : '1.5rem',
+                        'fontStyle' : 'italic'
+                        
+                    },
+                    'Other' : {
+                        
+                        'paddingLeft' : 5,
+                        'fontWeight' : '600',
+                        'fontSize' : '1.1rem',
+                        'borderLeft' : self.borderBlack
+                        
+                    },
+                    'Kansas' : {
+                        
+                        'paddingLeft' : 5,
+                        'marginBottom' : -5,
+                        'fontWeight' : '900',
+                        'fontSize' : '0.9rem',
+                        'fontStyle' : 'italic',
+                        'borderLeft' : self.borderBlack
+                                                
+                    },
+                    'Packages' : {
+                        
+                        'fontWeight' : '500',
+                        'fontSize' : '1.1rem',
+                        'fontStyle' : 'italic',
+                        'textDecoration' : 'underline'
+                        
+                    },
+                    'Bachelor' : {
+                        
+                        'fontWeight' : '100',
+                        'fontSize' : '0.9rem',
+                        'fontStyle' : 'italic'
+                        
+                    },
+                    'Languages' : {
+                        
+                        'fontWeight' : '500',
+                        'fontSize' : '1.1rem',
+                        'fontStyle' : 'italic',
+                        'textDecoration' : 'underline'
+                        
+                    },
+                    'University' : {
+                        
+                        'paddingLeft' : 5,
+                        'fontWeight' : '900',
+                        'fontSize' : '0.9rem',
+                        'fontStyle' : 'italic',
+                        'borderLeft' : self.borderBlack
+                        
+                    }
+                    
+                }[v.split(' ')[0] if (v.split(' ')[0] in styled) else False]
                 
             }
             
